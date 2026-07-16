@@ -1,7 +1,7 @@
 import os
 import glob
 import rasterio
-import numpy as np
+
 
 #Using glob to find bands
 scene = "/home/francine/hermits_peak_data/raw_scenes/LC80320352025247LGN00"
