@@ -12,7 +12,7 @@ Data Source: Landsat 8/9 Collection 2 Level-2 Surface from USGS Explorer
 Methodology
 
 1. Data Aquisition from Landsat: download from website or via m2m
-2. Index Calculation with Python: code is labled under
+2. Index Calculation with Python: code is labled under NDVI_NBRcode.py
 3. Visualization and Spatial Analysis with QGIS: load NDVI and NBR outputs into QGIS and use built in spatial analysis tools
 
 
