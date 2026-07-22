@@ -1,9 +1,11 @@
-# NDVI_vs_NBR2
+# NDVI_vs_NBR:Assessing Post-Fire Vegetation Recovery Monitoring at Hermits Peak 
 
 This project compares NDVI (Normalized Difference Vegetation Index) and NBR (Normalized Burn Ratio) trajectories over time to evaluate how well NDVI alone measures post-fire recovery after the Hermits Peak/Calf Canyon fire of 2022. 
 
+# Research Question: 
+Given that the Santa Fe National Forest relies soley on NDVI to assess post-fire vegetation recovery, how might recovery assessments differ if NBR (a different index for forest recovery) was used along with the existing metrics? 
 
-Data Info
+# Data Source and Information
 
 Location: Hermits Peak–Calf Canyon Fire burn scar, Santa Fe National Forest, New Mexico
 
@@ -14,11 +16,20 @@ Timeframe: May of 2021–2026
 Data Source: Landsat 8/9 Collection 2 Level-2 Surface from USGS Explorer
 
 
-Methodology
+# Methodology
 
 1. Data Aquisition from Landsat: download from website or via m2m
 2. Index Calculation with Python: code is labled under NDVI_NBRcode.py
 3. Visualization and Spatial Analysis with QGIS: load NDVI and NBR outputs into QGIS and use built in spatial analysis tools
+
+
+# Tools and Libraries
+- Python 3.12---rasterio, numpy
+- QGIS (open sourced, free GIS program)---Raster Calculator, Raster Layer Statistcs, Random Points in Layer, DataPlotly
+- LaTex
+
+
+  
 
 
 
