@@ -53,7 +53,8 @@ Location: Hermits Peak–Calf Canyon Fire burn scar, Santa Fe National Forest, N
 # Limitations
 - Limited Statistical Power: One month per year may be too small of a sample size. The project could possibly benefit from multiple data periods per year. 
 - Seasonal Noise: The same time of year can vary in climate and rainfall. A wet spring in 2021 compared to a dry spring in 2022 will change baseline vegetation reflection regardless of fire damage.
-- NBR Reliability as the "Comparison Index": While NBR is generally more preferable compared to NDVI in post-fire monitering, it is still not an accurate "pillar" of NIR-based indexes, perhaps a different index would provide higher accuracy. 
+- NBR Reliability as the "Comparison Index": While NBR is generally more preferable compared to NDVI in post-fire monitering, it is still not an accurate "pillar" of NIR-based indexes, perhaps a different index would provide higher accuracy.
+- Scale: NDVI and NBR have inherently different value scales
 
   
 Francine Hou, July 2026
