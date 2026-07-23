@@ -2,7 +2,7 @@
 
 This project compares NDVI (Normalized Difference Vegetation Index) and NBR (Normalized Burn Ratio) trajectories over time to evaluate how well NDVI alone measures post-fire recovery after the Hermits Peak/Calf Canyon fire of 2022. 
 
-Included in this repository is my NDVI/NBR calculation script, my downloaded Landsat Scenes, the NDVI and NBR raster outputs by year, my NDVI-NBR difference maps by year, and (more to add). 
+Included in this repository is my NDVI/NBR calculation script (under NDVI_NBRcode.py) , my downloaded Landsat Scenes, the NDVI and NBR raster outputs by year, my NDVI-NBR difference maps by year, and (more to add). 
 
 
 # Background
