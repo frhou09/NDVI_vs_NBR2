@@ -69,11 +69,21 @@ qgis
 
 The rest of the tools in QGIS are easily accesible using the built-in help features as well as through Youtube or blog tutorials.
 
+# Analysis
+Difference...image.pdf 
+- Difference graphs of NDVI-NBR. Green represents positive (NDVI>NBR) areas, pink vice versa (NDVI<NBR), and white equal (NDVI=NBR).
+
+Histogram.._ndvi.png
+- Raster Histogram that showcases the distribution of NDVI or NBR values across the burn scar area.
+  
+point....plot.png
+- Random sample point analysis generated using 500 random points on the burn scar area. The respective NDVI and NBR is calculated for each point and charted on a scattergram for each year (2021-2026).  
+
 # Limitations
 - Limited Statistical Power: One month per year may be too small of a sample size. The project could possibly benefit from multiple data periods per year. 
 - Seasonal Noise: The same time of year can vary in climate and rainfall. A wet spring in 2021 compared to a dry spring in 2022 will change baseline vegetation reflection regardless of fire damage.
 - NBR Reliability as the "Comparison Index": While NBR is generally more preferable compared to NDVI in post-fire monitering, it is still not an accurate "pillar" of NIR-based indexes, perhaps a different index would provide higher accuracy.
-- Scale: NDVI and NBR have inherently different value scales
+- Scale: Due to inherent differences in design and purpose, NDVI and NBR have different value scales. This is a problem when we are creating a direct comparison, especially in the Histograms and Scattergrams. 
 
   
 Francine Hou, July 2026
