@@ -67,7 +67,7 @@ sudo apt install qgis
 qgis
 ```
 
-The rest of the tools in QGIS are easily accesible using the built-in help features as well as easily accesible Youtube or blog tutorials.
+The rest of the tools in QGIS are easily accesible using the built-in help features as well as through Youtube or blog tutorials.
 
 # Limitations
 - Limited Statistical Power: One month per year may be too small of a sample size. The project could possibly benefit from multiple data periods per year. 
