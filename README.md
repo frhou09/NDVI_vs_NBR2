@@ -41,11 +41,12 @@ Location: Hermits Peak–Calf Canyon Fire burn scar, Santa Fe National Forest, N
     NDVI = (NIR - Red) / (NIR + Red)
     NBR = (NIR - SWIR2) / (NIR + SWIR2)
 3. Visualization and spatial analysis (QGIS) — Loaded NDVI/NBR outputs into QGIS (open source and free to use GIS desktop program for calculation, visualization, and analysis of geospatial information) to: 
-  Colorize and create visual NDVI and NBR maps
-  Generate difference maps (NDVI − NBR)
-  Calculate Pearson correlation between NDVI and NBR per year
-  Generate Raster Histographs
-  Sample random points within burn scar for point-based comparison + generate scattergram
+
+  - Colorize and create visual NDVI and NBR maps
+  - Generate difference maps (NDVI − NBR)
+  - Calculate Pearson correlation between NDVI and NBR per year
+  - Generate Raster Histographs
+  - Sample random points within burn scar for point-based comparison + generate scattergram
 
 # Tools and Libraries
 - Python 3.12---rasterio, numpy
