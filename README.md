@@ -21,6 +21,7 @@ Given that the Santa Fe National Forest relies soley on NDVI to assess post-fire
 # Data Source and Information
 
 Data Source: Landsat 8/9 Collection 2 Level-2 Surface from USGS Explorer
+  Simply access and download the data from the official website: https://earthexplorer.usgs.gov/
 
 Landsat Path/Row: 033/035
 
@@ -43,6 +44,8 @@ Location: Hermits Peak–Calf Canyon Fire burn scar, Santa Fe National Forest, N
   Calculate Pearson correlation between NDVI and NBR per year
   Generate Raster Histographs
   Sample random points within burn scar for point-based comparison + generate scattergram
+
+# QGIS Installation (linux)
 
 
 # Tools and Libraries
