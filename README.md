@@ -2,7 +2,7 @@
 
 This project compares NDVI (Normalized Difference Vegetation Index) and NBR (Normalized Burn Ratio) trajectories over time to evaluate how well NDVI alone measures post-fire recovery after the Hermits Peak/Calf Canyon fire of 2022. 
 
-Included in this repository is my NDVI/NBR calculation script (under NDVI_NBRcode.py), my NDVI-NBR difference maps by year, my Raster Histographs generated in QGIS by year, and my point analysis scattergrams by year (all that is listed above, excluding NDVI_NBRcode.py, can be found under the file named To Show). Due to size, my original downloaded Landsat scenes and the NDVI/NBR maps I generated using the script (NDVI_NBRcode.py) are not linked in this repository. 
+Included in this repository is my NDVI/NBR calculation script (under NDVI_NBRcode.py), my NDVI-NBR difference maps by year (labled Difference...image.pdf), my Raster Histograms generated in QGIS by year (Histogram.._ndvi.png), and my point analysis scattergrams by year (point....plot.png). All that is listed above, excluding NDVI_NBRcode.py, can be found under the file named To Show. Due to size, my original downloaded Landsat scenes and the NDVI/NBR maps I generated using the script (NDVI_NBRcode.py) are not linked in this repository. 
 
 
 # Background
@@ -45,13 +45,27 @@ Location: Hermits Peak–Calf Canyon Fire burn scar, Santa Fe National Forest, N
   Generate Raster Histographs
   Sample random points within burn scar for point-based comparison + generate scattergram
 
-# QGIS Installation (linux)
-
-
 # Tools and Libraries
 - Python 3.12---rasterio, numpy
 - QGIS (open sourced, free GIS program)---Raster Calculator, Raster Layer Statistcs, Random Points in Layer, DataPlotly
-- LaTex
+
+# QGIS Installation (linux)
+
+```bash
+sudo apt update
+```
+
+
+```bash
+sudo apt install qgis
+```
+
+
+```bash
+qgis
+```
+
+The rest of the tools in QGIS are easily accesible using the built-in help features as well as easily accesible Youtube or blog tutorials.
 
 # Limitations
 - Limited Statistical Power: One month per year may be too small of a sample size. The project could possibly benefit from multiple data periods per year. 
