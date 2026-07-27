@@ -40,6 +40,8 @@ unzip data/hermits_peak_nm_preliminary_20220615.zip -d data/
 
 
 
+
+
 # Methodology
 
 1. Data acquisition —Downloaded low-cloud-cover (<15%) Landsat scenes for years 2021-2026 for path/row 033/035 using usgsxplore.
