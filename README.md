@@ -29,9 +29,13 @@ Landsat Path/Row: 033/035
 Timeframe: May of 2021–2026 
 
 Location: Hermits Peak–Calf Canyon Fire burn scar, Santa Fe National Forest, New Mexico
- 
-  Burn Scar shapefile aquired from:
-    https://burnseverity.cr.usgs.gov/baer/baer-imagery-support-data-download/2022/hermits-peak 
+
+Burn Scar Shapefile Aquisition: Run the following commands in your terminal to automatically retrieve and extract the official USGS BAER burn scar perimeter
+
+```bash
+mkdir -p data
+wget [https://edcintl.cr.usgs.gov/downloads/sciweb1/shared/MTBS_Fire/data/baer/hermits_peak_nm_preliminary_20220615.zip](https://edcintl.cr.usgs.gov/downloads/sciweb1/shared/MTBS_Fire/data/baer/hermits_peak_nm_preliminary_20220615.zip) -P data/
+unzip data/hermits_peak_nm_preliminary_20220615.zip -d data/
 
 
 # Methodology
