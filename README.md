@@ -65,6 +65,19 @@ unzip data/hermits_peak_nm_preliminary_20220615.zip -d data/
     NDVI = (NIR - Red) / (NIR + Red)
     NBR = (NIR - SWIR2) / (NIR + SWIR2)
 
+Step 1: Clone the Repository
+```bash
+git clone [https://github.com/frhou09/NDVI_vs_NBR2.git](https://github.com/frhou09/NDVI_vs_NBR2.git)
+cd NDVI_vs_NBR2
+```
+
+Step 2: Install Requirements
+
+```bash
+pip install -r requirements.txt
+```
+
+Step 4: Run Calculation Code
 ```bash
 python3 scripts/NDVI_NBRcode.py
 ```
