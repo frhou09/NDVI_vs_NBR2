@@ -24,7 +24,7 @@ Data Source: Landsat 8/9 Collection 2 Level-2 Surface from USGS Explorer
   
   Access the USGS website: https://earthexplorer.usgs.gov/
 
-    Step-by-step download instructions:
+Step-by-step download instructions:
     1. Under the "Search Criteria" tab, click the selection bar under "Select a Geocoding Method", choose "Path/Row".
     2. Select "Polygon" and type in the respective path/row (Path/Row: 033/035).
     3. In the "Date Range" tab, enter the range in the required format (eg:05/01/2021-06/01/2021).
