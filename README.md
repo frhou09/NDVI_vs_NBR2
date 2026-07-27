@@ -36,10 +36,7 @@ Burn Scar Shapefile Aquisition: Run the following commands in your terminal to a
 mkdir -p data
 wget [https://edcintl.cr.usgs.gov/downloads/sciweb1/shared/MTBS_Fire/data/baer/hermits_peak_nm_preliminary_20220615.zip](https://edcintl.cr.usgs.gov/downloads/sciweb1/shared/MTBS_Fire/data/baer/hermits_peak_nm_preliminary_20220615.zip) -P data/
 unzip data/hermits_peak_nm_preliminary_20220615.zip -d data/
-
-
-
-
+```
 
 
 # Methodology
