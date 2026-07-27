@@ -67,7 +67,7 @@ unzip data/hermits_peak_nm_preliminary_20220615.zip -d data/
 
 Step 1: Clone the Repository
 ```bash
-git clone [https://github.com/frhou09/NDVI_vs_NBR2.git](https://github.com/frhou09/NDVI_vs_NBR2.git)
+git clone https://github.com/frhou09/NDVI_vs_NBR2.git 
 cd NDVI_vs_NBR2
 ```
 
