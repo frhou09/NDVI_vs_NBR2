@@ -22,8 +22,18 @@ Given that the Santa Fe National Forest relies soley on NDVI to assess post-fire
 
 Data Source: Landsat 8/9 Collection 2 Level-2 Surface from USGS Explorer
   
-  Simply access and download the data from the official website: https://earthexplorer.usgs.gov/
+  Access the USGS website: https://earthexplorer.usgs.gov/
 
+    Step-by-step download instructions:
+    1. Under the "Search Criteria" tab, click the selection bar under "Select a Geocoding Method", choose "Path/Row".
+    2. Select "Polygon" and type in the respective path/row (Path/Row: 033/035).
+    3. In the "Date Range" tab, enter the range in the required format (eg:05/01/2021-06/01/2021).
+    4. Under "Cloud Cover", choose a range of 0%-15%. 
+    5. Now under the "Data Sets" bar, select Landsat, Landsat Collection 2 Level-2, Landsat 8-9 OLI/TIRS C2 L2.
+    6. Now you can click "Results".
+    7. Browse through the results and download the scenes that have least visible cloud coverage. 
+    8. This process will need to be repeated until all 6 years (2021-2026) have been downloaded. 
+  
 Landsat Path/Row: 033/035
 
 Timeframe: May of 2021–2026 
