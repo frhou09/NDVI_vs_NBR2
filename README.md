@@ -45,7 +45,12 @@ unzip data/hermits_peak_nm_preliminary_20220615.zip -d data/
 2. Index calculation (Python) — Calculated NDVI and NBR from Red (Band 4), NIR (Band 5), and SWIR2 (Band 7) surface reflectance bands using rasterio and numpy: 
     NDVI = (NIR - Red) / (NIR + Red)
     NBR = (NIR - SWIR2) / (NIR + SWIR2)
-3. Visualization and spatial analysis (QGIS) — Loaded NDVI/NBR outputs into QGIS (open source and free to use GIS desktop program for calculation, visualization, and analysis of geospatial information) to:
+
+```bash
+python3 scripts/NDVI_NBRcode.py
+```
+   
+4. Visualization and spatial analysis (QGIS) — Loaded NDVI/NBR outputs into QGIS (open source and free to use GIS desktop program for calculation, visualization, and analysis of geospatial information) to:
 
   a. Colorizing and Creating Visual NDVI and NBR Maps
  - Open Symbology:Right-click raster layer (e.g., NDVI_2021) in the Layers panel and select Properties.
