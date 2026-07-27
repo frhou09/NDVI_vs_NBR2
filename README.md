@@ -92,6 +92,7 @@ python3 scripts/NDVI_NBRcode.py
  -  Click Apply and OK.
 
 
+
     b. Generating Difference Maps ({NDVI} - {NBR})
 - At the menu bar, select Raster, then Raster Calculator
 - Write the equation into the expression box: Difference = "NDVI\_2022@1" - "NBR\_2022@1"
@@ -102,12 +103,16 @@ python3 scripts/NDVI_NBRcode.py
 - Click Apply, then OK.
 - Repeat these steps for all remaining years in your series (2021, 2023, 2024, 2025, and 2026).
 
+
+
     c. Sample Random Points Within the Burn Scar
 - Load the previously downloaded burn scar shaprfile into QGIS.
 - Go to the top menu: Vector, Research Tools, Random Points Inside Polygon.
 - Configure the settings:Input layer: Select your burn scar boundary polygon.
 - Sampling strategy: Select Number of points and enter a count (500).
 - Save the output as sampled_points.shp or .gpkg and click Run.
+
+
 
     d. Extract Raster Values to Points 
 - Open the Processing Toolbox.Search for Sample raster values and double-click it.
