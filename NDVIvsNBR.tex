@@ -1,69 +1,283 @@
-R\usepackage[utf8]{inputenc}
+\documentclass[11pt]{article}
+
+% ---------- Packages ----------
 \usepackage[margin=1in]{geometry}
-\usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{subcaption}
 \usepackage{hyperref}
 \usepackage{cite}
 
-\title{\textbf{Comparative Analysis of NDVI and NBR Trajectories in Tracking Post-Fire Vegetation Recovery: A Case Study of the Hermits Peak/Calf Canyon Fire}}
-\author{\textbf{[Francine Hou]}}
-\date{\today}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=blue,
+    urlcolor=blue
+}
 
+\title{Comparative Analysis of NDVI and NBR Trajectories in Tracking Post-Fire Vegetation Recovery: A Case Study of the Hermits Peak/Calf Canyon Fire}
+\author{Francine Hou \\ Institute for Computing in Research}
+\date{July 29, 2026}
+
+\usepackage{float}
 \begin{document}
 
 \maketitle
 
-\begin{abstract}
-[work in progress]
-\end{abstract}
-
 \section{Introduction}
-Wildfires are among the most destructive natural disasters that, in recent decades, have become especially frequent and severe due to the effects of climate change. In New Mexico, this trend of increased wildfires has become a growing topic of public concern. Among the state’s recent wildfires, the Hermits Peak/Calf Canyon fire of 2022 is especially notable. As the largest wildfire in New Mexico history, burning approximately 342,000 acres and over 900 structures, the Hermits Peak/Calf Canyon left persistent ecological and socioeconomic impacts all across Northern New Mexico. The fire was the product of the continual pattern of low rainfall, droughts, increasing temperatures, and two poorly managed controlled-burns that eventually escaped their boundaries and joined together. Ultimately, the fire cost the displacement of thousands of residents and over 5 billion dollars in recovery efforts.
 
-The process of ecosystem recovery after a fire is highly complex and dependent on various factors such as vegetation diversity, fire severity, and ecological stability. Immediately post-fire, the first signs of recovery are when post-fire specialist species like ferns and mosses begin to repopulate the landscape. Shortly after, herbaceous plant species will be able to regrow in the nutrient dense soil and sunlight-rich environment due to the lack of canopy cover. That said, while most of the vegetative population recovers relatively quickly, it takes several decades for a full forest canopy to regenerate. High-severity fires can trigger long term shifts of forest ecosystems into shrubs and grasslands, which are prone to experiencing more frequent fires. This loss of forest structure degrades animal habitats, reduces carbon sequestration, and weakens ecosystem resilience to future disruptions.
+Wildfires are among the most destructive natural disasters that, in recent decades, have become especially frequent and severe due to the effects of climate change \cite{climateChange}. In New Mexico \cite{nmDrought}, this trend of increased wildfires has become a growing topic of public concern. Among the state's recent wildfires, the Hermits Peak/Calf Canyon fire of 2022 is especially notable. As the largest wildfire in New Mexico history, burning approximately 342,000 acres and over 900 structures \cite{nrcsHermits}, the Hermits Peak/Calf Canyon left persistent ecological and socioeconomic impacts all across Northern New Mexico. The fire was the product of the continual pattern of low rainfall, droughts, increasing temperatures, and two poorly managed controlled burns that eventually escaped their boundaries and joined together. Ultimately, the fire cost the displacement of thousands of residents and over 5 billion dollars in recovery efforts \cite{ebscoRecovery}.
 
-With the fragility of post-fire forest ecosystems in mind, it is increasingly important to have effective regeneration monitoring practices that serve as an essential guide for restoration efforts and policy-making for fire-prone landscapes. In the recent decade, remote sensing (RS) technology has been increasingly incorporated into this monitoring process as it is a cost-effective, non-invasive, and streamlined method compared to acquiring ground based data. This usually involves using Near-Infrared (NIR)-based spectral indices derived from RS software and Geographic Information Systems (GIS) to assess burn and recovery patterns. RS technologies work by detecting the varying radiation electromagnetic radiation reflected or emitted by objects on the Earth’s surface, allowing satellites to distinguish different land cover types based on this information. Central to most large-scale environmental monitoring are the RS applications in satellite programs like the Landsat Series, which offers continuous image libraries with free open-access. Co-managed by the US Geological Survey (USGS) and the National Aeronautics and Space Administration (NASA), the Landsat program consists of a series of Earth-observing satellite missions that provide a record of global land surfaces at spatial resolutions of 15--100 meters.
+The process of ecosystem recovery after a fire is highly complex and dependent on various factors such as vegetation diversity, fire severity \cite{nasaRecover}, and ecological stability. Immediately post-fire, the first signs of recovery are when post-fire specialist species like ferns and mosses begin to repopulate the landscape \cite{nasaRecover}. Shortly after, herbaceous plant species will be able to regrow in the nutrient-dense soil and sunlight-rich environment due to the lack of canopy cover. That said, while most of the vegetative population recovers relatively quickly, it takes several decades for a full forest canopy to regenerate \cite{nasaRecover}. High-severity fires can trigger long-term shifts of forest ecosystems into shrubs and grasslands, which are prone to experiencing more frequent fires. This loss of forest structure degrades animal habitats, reduces carbon sequestration, and weakens ecosystem resilience to future disruptions \cite{treeRegen}.
 
-[one sentence abt NIR based indices] Of the most commonly employed NIR-based spectral indices, the Santa Fe Forest Reserve, responsible for the Hermits Peak/Calf Canyon fire management, uses Normalized Difference Vegetation Index (NDVI) as their only source of recovery data. NDVI is defined as a graphical indicator that is used to assess vegetation health and density via NIR reflectance and red light absorption values. The range is from +1, as in healthy, dense vegetation, and -1, as in bodies of water. NDVI has a variety of applications, including measuring ecosystem distribution, predicting disturbances, and monitoring habitat loss and degradation, and is ranked as the most commonly used vegetation index. However, despite its common application in vegetative regrowth monitoring, NDVI has several flaws. Since NDVI is only a spectral index that measures the difference between the reflectance of NIR and red light, it cannot distinguish between types of vegetation emitting or absorbing this radiation. As a result, increases in NDVI may reflect the rapid regrowth of grasses and shrubs rather than the recovery of tree canopies, leading to an overestimation of forest recovery despite incomplete restoration of forest structure and biodiversity.
+With the fragility of post-fire forest ecosystems in mind, it is increasingly important to have effective regeneration monitoring practices that serve as an essential guide for restoration efforts and policy-making for fire-prone landscapes \cite{mdpiMonitoring}. In the recent decade, remote sensing (RS) technology has been increasingly incorporated into this monitoring process as it is a cost-effective, non-invasive, and streamlined method compared to acquiring ground-based data \cite{pmcSensors}. This usually involves using Near-Infrared (NIR)-based spectral indices derived from RS software and Geographic Information Systems (GIS) to assess burn and recovery patterns. RS technologies work by detecting the varying electromagnetic radiation reflected or emitted by objects on the Earth's surface, allowing satellites to distinguish different land cover types based on this information. Central to most large-scale environmental monitoring are the RS applications in satellite programs like the Landsat Series, which offers continuous image libraries with free open access \cite{usgsLandsat}. Co-managed by the US Geological Survey (USGS) and the National Aeronautics and Space Administration (NASA), the Landsat program consists of a series of Earth-observing satellite missions that provide a record of global land surfaces at spatial resolutions of 15--100 meters.
 
-There is general consensus that, due to this inability to portray structural recovery of forest canopy, NDVI alone is not an optimal tool for monitoring post-fire regeneration. Instead, a more comprehensive view of vegetation recovery can be achieved when NDVI is used alongside other vegetation indices or alternative methods of monitoring. Case studies that investigate specific instances of forest recovery usually apply a second data source such as Light Detection and Ranging (LiDAR) or Normalized Burn Ratio (NBR) and Differenced Normalized Burn Ratio (dNBR). In this case, NBR is an equally popular and well studied index that pairs well with NDVI in forest regrowth investigations. Slightly differing from NDVI, NBR is an NIR-based index primarily constructed to highlight burnt areas from active or recent wildfires, though it also has applications in monitoring long-term post-fire vegetation regrowth. NBR is more specialized and suited for post-fire burn scar analysis as it emphasizes the difference between NIR and shortwave infrared (SWIR) reflectance. Unlike red light, SWIR is highly sensitive to water content, making it particularly effective for detecting reduced moisture content, exposed soil, and burnt material.
+ Of the most commonly employed NIR-based spectral indices, the Santa Fe Forest Reserve, responsible for the Hermits Peak/Calf Canyon fire management, uses the Normalized Difference Vegetation Index (NDVI) as their only source of recovery data (A. Sena, Santa Fe National Forest, personal communication, July 6, 2026). NDVI is defined as a graphical indicator used to assess vegetation health and density via NIR reflectance and red light absorption values \cite{sciencedirectNDVI}. Healthy vegetation absorbs red light for photosynthesis due to chlorophyll pigments, while reflecting NIR radiation. In contrast, stressed vegetation and burned areas reflect relatively more red light and less NIR. The NDVI range spans from $+1$, indicating healthy, dense vegetation, to $-1$ \cite{mdpiNDVIrange}, indicating bodies of water. NDVI has a variety of applications, including measuring ecosystem distribution, predicting disturbances, and monitoring habitat loss and degradation, and is ranked as the most commonly used vegetation index \cite{googleBooksVI}. However, despite its common application in vegetative regrowth monitoring, NDVI has several flaws. Since NDVI is only a spectral index that measures the difference between the reflectance of NIR and red light, it cannot distinguish between types of vegetation emitting or absorbing this radiation \cite{nasaRecover}. As a result, increases in NDVI may reflect the rapid regrowth of grasses and shrubs rather than the recovery of tree canopies, leading to an overestimation of forest recovery despite incomplete restoration of forest structure and biodiversity \cite{mdpiOverestimate}. There is general consensus that, due to this inability to portray structural recovery of forest canopy, NDVI alone is not an optimal tool for monitoring post-fire regeneration \cite{nasaRecover}. Instead, a more comprehensive view of vegetation recovery can be achieved when NDVI is used alongside other vegetation indices or alternative methods of monitoring \cite{nasaRecover}. Case studies that investigate specific instances of forest recovery usually apply a second data source such as Light Detection and Ranging (LiDAR) \cite{nasaRecover} or the Normalized Burn Ratio (NBR) and Differenced Normalized Burn Ratio (dNBR) \cite{sciencedirectNBR}. In this case, NBR is an equally popular and well-studied index that pairs well with NDVI in forest regrowth investigations. Slightly differing from NDVI, NBR is an NIR-based index primarily constructed to highlight burnt areas from active or recent wildfires, though it also has applications in monitoring long-term post-fire vegetation regrowth. NBR is more specialized and suited for post-fire burn scar analysis, as it emphasizes the difference between NIR and shortwave infrared (SWIR) reflectance. Unlike red light, SWIR is highly sensitive to water content, making it particularly effective for detecting reduced moisture content, exposed soil, and burnt material.
 
-Since the Santa Fe Forest Reserve uses a singular index for tracking forest recovery, it brings the question of whether this approach to post-fire monitoring of the Hermits Peak/Calf Canyon is most optimal for accurate reporting and response. In this study, annual NDVI and dNDVI data from the Hermits Peak/Calf Canyon burn scar, spanning 2021 (pre-fire) to 2026 (four years post-fire), will be compared with corresponding NBR and dNBR data to identify potential discrepancies in post-fire recovery assessments. Inconsistencies between the two indices would support the need for more comprehensive evaluations of forest regeneration by using multiple remote sensing indices.
+Since the Santa Fe Forest Reserve uses a singular index for tracking forest recovery, it brings into question whether this approach to post-fire monitoring of the Hermits Peak/Calf Canyon fire is optimal for accurate reporting and response. In this study, annual NDVI and differenced Normalized Difference Vegetation Index (dNDVI) data from the Hermits Peak/Calf Canyon burn scar, spanning 2021 (pre-fire) to 2026 (four years post-fire), will be compared with corresponding NBR and dNBR data to identify potential discrepancies in post-fire recovery assessments. Inconsistencies between the two indices would support the need for more comprehensive evaluations of forest regeneration using multiple remote sensing indices.
 
 \section{Data and Methodology}
 
 \subsection{Study Area}
-This study focuses on the Santa Fe National Forest in Northern New Mexico. [add details abt location, climate, elevation]
 
-The Hermits Peak Fire ignited on April 6, 2022, followed by the Calf Canyon Fire on April 19, 2022. Both fires started as prescribed burns that eventually escaped its bounds due to high winds and the unusually dry season. On April 22, the two fires merged to form the Hermits Peak/Calf Canyon Fire, which burned until it was eventually contained on August 21, 2022. The fire became the largest wildfire in New Mexico's recorded history, burning approximately 341,471 acres across the Sangre de Cristo Mountains in San Miguel, Mora, and Taos counties and destroying more than 900 structures within the four month period.
+This study focuses on the Santa Fe National Forest in Northern New Mexico, as both the Hermits Peak and Calf Canyon fires fall within its bounds.
+
+The Hermits Peak Fire ignited on April 6, 2022, followed by the Calf Canyon Fire on April 19, 2022. Both fires started as prescribed burns that eventually escaped their bounds due to high winds and an unusually dry season \cite{frontiersinFire}. On April 22, the two fires merged to form the Hermits Peak/Calf Canyon Fire, which burned until it was eventually contained on August 21, 2022 \cite{nmfwriMonitoring}. The fire became the largest wildfire in New Mexico's recorded history, burning approximately 341,471 acres \cite{nrcsHermits} across the Sangre de Cristo Mountains in San Miguel, Mora, and Taos counties and destroying more than 900 structures within a four-month period.
 
 \subsection{Burn Scar Perimeter}
-To define the exact spatial extent of the burn, the official combined burn scar perimeter was obtained from the Burned Area Emergency Response (BAER) Imagery Support Program. This vector boundary served as the shapefile mask to clip all satellite scenes from their full scene down to the specific burn scar area.
+
+To define the exact spatial extent of the burn, the official combined burn scar perimeter was obtained from the Burned Area Emergency Response (BAER) Imagery Support Program \cite{baerImagery}. This vector boundary served as the shapefile mask to clip all satellite scenes from their full scene extent down to the specific burn scar area.
 
 \subsection{Data Acquisition \& Processing}
-The primary data source for calculating NDVI and NBR were Landsat 8 and Landsat 9 Collection 2 Level-2 Surface Reflectance imagery accessed and downloaded from USGS EarthExplorer. Note that Level-2 features pre-applied atmospheric correction algorithms that can remove atmospheric aerosols, haze, and ozone. This ensures that no additional data cleaning is required before processing. Additionally, cloud cover was filtered using the USGS EarthExplorer filters to ensure that no images with cloud cover $>15\%$ were downloaded. The coordinates of the burn scar were also filtered through the platform using the Worldwide Reference System-2 (WRS-2), a global grid system defined by 233 paths and 248 rows. The study area corresponds to Path 33, Row 35.
 
-Once downloaded, Band 4 (Red Band), Band 5 (Near-Infrared, NIR), and Band 7 (Short-Wave Infrared 2, SWIR-2) are extracted for their respective NDVI and NBR calculations. Next, these images were converted to NDVI and NBR using the following formulas.
+The primary data source for calculating NDVI and NBR was Landsat 8 and Landsat 9 Collection 2 Level-2 Surface Reflectance imagery accessed and downloaded from USGS EarthExplorer \cite{usgsEarthExplorer}. Level-2 imagery features pre-applied atmospheric correction algorithms that remove atmospheric aerosols, haze, and ozone, ensuring that no additional data cleaning was required before processing. Additionally, cloud cover was filtered using the USGS EarthExplorer filters to ensure that no images with cloud cover greater than 15\% were downloaded. The coordinates of the burn scar were also filtered through the platform using the Worldwide Reference System-2 (WRS-2), a global grid system defined by 233 paths and 248 rows. The study area corresponds to Path 33, Row 35. A total of six scenes were acquired for this study: May 2021, May 2022, May 2023, May 2024, May 2025, and May 2026.
 
-\subsection{NDVI and NBR Calculations}
-NDVI is a vegetation index that measures photosynthetic activity and green vegetation canopy density via NIR reflectance and red light absorption values:
+Once downloaded, Band 4 (Red), Band 5 (Near-Infrared, NIR), and Band 7 (Shortwave Infrared 2, SWIR-2) were extracted for their respective NDVI and NBR calculations. These images were then converted to NDVI and NBR using the following formulas:
+
 \begin{equation}
 \text{NDVI} = \frac{\text{NIR} - \text{Red}}{\text{NIR} + \text{Red}}
 \end{equation}
 
-NBR measures burn severity and canopy/soil moisture dynamics by combining NIR and Short-Wave Infrared reflectance:
 \begin{equation}
-\text{NBR} = \frac{\text{NIR} - \text{SWIR}}{\text{NIR} + \text{SWIR}}
+\text{NBR} = \frac{\text{NIR} - \text{SWIR2}}{\text{NIR} + \text{SWIR2}}
 \end{equation}
 
-Differenced indices ($\text{dNDVI}$ and $\text{dNBR}$) are computed by subtracting post-fire index values from pre-fire baseline values:
+The two NIR-based indices were calculated via Python, using a script that extracted the respective bands (Bands 4 and 5 for NDVI; Bands 4 and 7 for NBR) and performed the calculations using the formulas above. This process generated the raw NDVI and NBR map outputs.
+
+The calculation Python script can be found on the project GitHub. \href{https://github.com/frhou09/NDVI_vs_NBR2/tree/main}{Github Link}
+
+\subsection{QGIS Analysis}
+
+QGIS is a free, open-source Geographic Information System (GIS) software that served as the primary platform for spatial analysis and visualization in this study. After the Python script generated the annual NDVI and NBR rasters, QGIS was used to apply color symbology and produce the NDVI and NBR maps shown in Figures~\ref{fig:ndvi_maps} and \ref{fig:nbr_maps} 
+for each year of the study period.
+
+% ---------- Figure 1: NDVI maps ----------
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.32\textwidth}
+        \includegraphics[width=\linewidth]{2021ndvi.jpeg}
+    \end{subfigure}
+    \begin{subfigure}{0.32\textwidth}
+        \includegraphics[width=\linewidth]{2022ndvi.jpeg}
+    \end{subfigure}
+    \begin{subfigure}{0.32\textwidth}
+        \includegraphics[width=\linewidth]{2023ndvi.jpeg}
+    \end{subfigure}\\[2pt]
+    \begin{subfigure}{0.32\textwidth}
+        \includegraphics[width=\linewidth]{2024ndvi.jpeg}
+    \end{subfigure}
+    \begin{subfigure}{0.32\textwidth}
+        \includegraphics[width=\linewidth]{2025ndvi.jpg}
+    \end{subfigure}
+    \begin{subfigure}{0.32\textwidth}
+        \includegraphics[width=\linewidth]{2026ndvi.jpg}
+    \end{subfigure}
+    \caption{NDVI maps of the Hermits Peak/Calf Canyon burn scar, 2021 (pre-fire) through 2026 (left to right, top to bottom).}
+    \label{fig:ndvi_maps}
+\end{figure}
+
+% ---------- Figure 2: NBR maps ----------
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.32\textwidth}
+        \includegraphics[width=\linewidth]{2021nbr.jpeg}
+    \end{subfigure}
+    \begin{subfigure}{0.32\textwidth}
+        \includegraphics[width=\linewidth]{2022nbr.jpeg}
+    \end{subfigure}
+    \begin{subfigure}{0.32\textwidth}
+        \includegraphics[width=\linewidth]{2023nbr.jpeg}
+    \end{subfigure}\\[2pt]
+    \begin{subfigure}{0.32\textwidth}
+        \includegraphics[width=\linewidth]{2024nbr.jpeg}
+    \end{subfigure}
+    \begin{subfigure}{0.32\textwidth}
+        \includegraphics[width=\linewidth]{2025nbr.jpeg}
+    \end{subfigure}
+    \begin{subfigure}{0.32\textwidth}
+        \includegraphics[width=\linewidth]{2026nbr.jpeg}
+    \end{subfigure}
+    \caption{NBR maps of the Hermits Peak/Calf Canyon burn scar, 2021 (pre-fire) through 2026 (left to right, top to bottom).}
+    \label{fig:nbr_maps}
+\end{figure}
+
+
+
+
+
+
+To enable quantitative comparison across years, 500 random sampling points were generated within the Hermits Peak/Calf Canyon burn boundary using the Random Points in Layer Bounds tool in QGIS. The NDVI and NBR values at each sampling location were then extracted from the annual raster datasets (2021--2026) using the Sample Raster Values tool. These extracted values were subsequently used to calculate the differenced indices (dNDVI and dNBR) according to the following equations:
+
 \begin{equation}
-\text{dNDVI} = \text{NDVI}_{\text{pre}} - \text{NDVI}_{\text{post}}
-\end{equation}
-\begin{equation}
-\text{dNBR} = \text{NBR}_{\text{pre}} - \text{NBR}_{\text{post}}
+\text{dNDVI} = \text{NDVI}_{2021} - \text{NDVI}_{\text{year}}
 \end{equation}
 
-The two NIR-based indices were calculated via Python by extracting the respective bands (Band 4 and Band 5 for NDVI; Band 5 and Band 7 for NBR) and executing the subsequent index equations. This process generates the raw NDVI and NBR raster outputs for spatial analysis.
+\begin{equation}
+\text{dNBR} = \text{NBR}_{2021} - \text{NBR}_{\text{year}}
+\end{equation}
+
+Unlike NDVI and NBR, which represent vegetation conditions at a single point in time, the differenced indices show how much vegetation has changed relative to pre-fire conditions.
+
+\subsection{Statistical and Visual Analysis}
+
+The 500 sample points exported from QGIS were imported into R for statistical and graphical analysis. Pearson's correlation coefficient ($r$) between NDVI and NBR (Figure~\ref{fig:corr_ndvi_nbr}), as well as between dNDVI and dNBR (Figure~\ref{fig:corr_dndvi_dnbr}), was calculated annually across the sample points. Additionally, the mean and standard deviations (SD) of the index values were computed for each year to examine temporal trends in vegetation recovery (Figure~\ref{fig:mean_sd}). Scatter plots with fitted linear regression lines (Figure~\ref{fig:scatter}) were generated, along with bar charts and time-series plots illustrating annual changes in correlation strength and mean spectral index values (Figure~\ref{fig:trend}). Finally, each of the 500 sample points was compared to its own 2021 baseline value to classify each sampled point into recovery-based categories (Figure~\ref{fig:recovery_status}).
+
+\section{Results}
+
+% ---------- Figure 3 & 4 ----------
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\linewidth]{6202(1).jpeg}
+        \caption{}
+        \label{fig:corr_ndvi_nbr}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\linewidth]{6202.jpeg}
+        \caption{}
+        \label{fig:mean_sd}
+    \end{subfigure}
+    \caption{(a) Annual Pearson correlation coefficients ($r$) between NDVI and NBR, 2021--2026. (b) Mean NDVI and NBR values with standard deviation, 2021--2026.}
+    \label{fig:fig34}
+\end{figure}
+
+As observed in Figure~\ref{fig:mean_sd}, NDVI and NBR experienced similar trends in their index values within the six-year period. Both exhibited a sharp decline during the Hermits Peak/Calf Canyon Fire in 2022, followed by a gradual recovery in the subsequent years. The divergence between the two indices was greatest in the period between 2022--2023, but gradually narrowed toward 2026. This is likely due to NDVI registering rapid vegetation regrowth at higher values than NBR registers real burn-related ecosystem recovery. Similarly, in Figure~\ref{fig:corr_ndvi_nbr}, Pearson correlation coefficients indicated a consistently positive relationship, ranging from $r = 0.612$ in 2023 to $r = 0.937$ in 2022, between NDVI and NBR throughout the study period.
+
+% ---------- Figure 5 ----------
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{6204.png}
+    \caption{Annual Pearson correlation coefficients ($r$) between dNDVI and dNBR, 2021--2026.}
+    \label{fig:corr_dndvi_dnbr}
+\end{figure}
+
+Similarly, strong positive relationships were observed between dNDVI and dNBR in every post-fire year (Figure~\ref{fig:corr_dndvi_dnbr}), with Pearson correlation coefficients ranging from $r = 0.605$ to $r = 0.838$. Once again, there is a trend of higher dispersion around the regression line a year after the fire (Figure~\ref{fig:scatter}), indicating locations where changes in vegetation greenness did not correspond closely with changes in burn severity. These discrepancies became particularly apparent in 2023 and 2025, suggesting spatial variability in ecosystem recovery.
+
+% ---------- Figure 6 ----------
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{6206.png}
+    \caption{Scatter plots of $\Delta$NDVI vs.\ $\Delta$NBR by year (2021 baseline), with fitted linear regression lines.}
+    \label{fig:scatter}
+\end{figure}
+
+% ---------- Figure 7 ----------
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{6203.png}
+    \caption{Trend of Pearson correlation coefficients over time, comparing NDVI--NBR and dNDVI--dNBR relationships.}
+    \label{fig:trend}
+\end{figure}
+
+Regardless of the coefficient being between NDVI and NBR or dNDVI and dNBR, the lowest correlation of the entire study period always corresponds to the first full growing season after containment. As seen in Figure~\ref{fig:trend}, whereas NDVI--NBR coefficients sit consistently higher than dNDVI--dNBR coefficients, there is an intersection point in 2023 around $r = 0.60$.
+
+% ---------- Figure 8 ----------
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{6205.png}
+    \caption{Comparison of recovery status classifications (Fully Recovered, Partially Recovered, Not Recovered) based on NDVI vs.\ NBR, 2026 relative to the 2021 baseline.}
+    \label{fig:recovery_status}
+\end{figure}
+
+Finally, Figure~\ref{fig:recovery_status} represents the results of classifying each of the 493 sampled points (7 points were unregisterable) into the categories \textbf{Fully Recovered} (80\%--100\%), \textbf{Partially Recovered} (50\%--80\%), or \textbf{Not Recovered} (0\%--50\%). This classification measure was derived from a similar study analyzing forest recovery trends in North America. It is worth noting that geographical differences between the data sets from the aforementioned study and the Hermits Peak/Calf Canyon fire may reduce the applicability of this measure to our case study. NBR registered 20.8\% of the 493 points as Fully Recovered, whereas NDVI registered double the amount at 62.07\%. The difference between the two is drastic.
+
+\section{Implications}
+
+NDVI and NBR display strong correlation with each other, thus when assessing long-term recovery trends there is some support for the two being employed interchangeably. As seen in Figure~\ref{fig:mean_sd}, which measures the mean and SD of the values, the two indices present a largely similar overall trend despite the difference in value range. That being said, the divergence between the two indices in 2023 does signify the need for a more comprehensive approach. This conclusion is not derived from the magnitude of the deviation, but rather from the cruciality of this time period. As addressed often in NDVI literature, NDVI is especially vulnerable to overestimating forest regeneration during the very early stages of burn scar recovery, as it aligns with the timeline of post-fire specialist species and shrubland regrowth. Within this year, the landscape is especially vulnerable due to its proximity to recent disturbance and the fragility of its slowly rebuilt ecosystem. This time period also happens to be a critical point for decision- and policy-making for restoration efforts in the burn scar. This combination of a vulnerable ecosystem and a critical decision-making period makes this slight divergence between the two indices still notable despite the relatively positive coefficient values. Additionally, the drastic difference between NDVI and NBR results for recovery status indicates that NDVI alone may overestimate ecological recovery following high-severity wildfire. Incorporating burn-specific indices such as NBR alongside NDVI could therefore provide a more comprehensive assessment of post-fire ecosystem recovery.
+
+\section{Limitations and Future Research}
+
+The limitations of this report are that only four years of post-fire data are available for analysis. In order to analyze the full recovery process of a post-fire ecosystem, a longer period of post-fire regrowth should be observed, as full canopy regeneration can take several decades. Additionally, while NBR serves as a reputable and relatively accurate index for comparison, it is by no means a complete reflection of reality. Looking ahead, future studies could benefit from validating remotely sensed recovery estimates using field measurements of canopy cover and integrating additional datasets such as GEDI LiDAR.
+
+\section{Conclusion}
+
+This study establishes that although NDVI and NBR exhibited strong positive correlations throughout the study period, NDVI consistently indicated a greater degree of recovery than NBR. This suggests that vegetation greenness alone may not fully represent post-fire ecosystem recovery, particularly during the early stages of succession when grasses and shrubs regenerate more rapidly than tree canopies. Consequently, in employing a singular greenness-based spectral index, the Santa Fe Forest Reserve is potentially losing valuable data that an additional burn-sensitive spectral index could provide. Therefore, this study recommends that the Forest Reserve incorporate non-NDVI metrics into their post-fire assessments, given the financial and technical ability to do so.
+
+\section*{Acknowledgement}
+
+I would like to express my gratitude to my mentor, Bella Root, for their invaluable support, guidance, and feedback throughout this research project. I would also like to thank the Institute for Computing in Research for providing me with this incredible learning opportunity.
+
+% ============================================================
+% Bibliography
+% ============================================================
+\begin{thebibliography}{99}
+
+\bibitem{climateChange}
+Climate change and wildfire frequency, \textit{Nature Climate Change}. \url{https://www.nature.com/articles/nclimate3303}
+
+\bibitem{nmDrought}
+Governor Declares Statewide Drought and Severe Fire Conditions, Office of the Governor of New Mexico (2026). \url{https://www.governor.state.nm.us/2026/05/20/governor-declares-statewide-drought-and-severe-fire-conditions-agencies-will-coordinate-community-and-water-protection-efforts/}
+
+\bibitem{nrcsHermits}
+NRCS New Mexico's Hermits Peak/Calf Canyon Disaster Assistance, USDA Natural Resources Conservation Service. \url{https://www.nrcs.usda.gov/state-offices/new-mexico/nrcs-new-mexicos-hermits-peakcalf-canyon-disaster-assistance}
+
+\bibitem{ebscoRecovery}
+Recovery cost estimates for the Hermits Peak/Calf Canyon Fire, EBSCO Academic Database.
+
+\bibitem{nasaRecover}
+Remote Sensing of Post-Fire Recovery, NASA/Idaho State University GIS Training and Research Center. \url{https://giscenter.isu.edu/pdf/PDF_NASA_RECOVER2/RemoteSensingPostFireRecovery.pdf}
+
+\bibitem{treeRegen}
+Tree Regeneration Review, Northern Rockies Fire Science Network. \url{https://www.nrfirescience.org/sites/default/files/TreeRegenerationReviewFinal_compressed_0.pdf}
+
+\bibitem{mdpiMonitoring}
+Monitoring post-fire vegetation recovery for restoration and policy, \textit{Remote Sensing}, MDPI. \url{https://www.mdpi.com/2072-4292/11/3/308}
+
+\bibitem{pmcSensors}
+Remote sensing applications in environmental monitoring, \textit{Sensors}, PMC. \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC12115783/}
+
+\bibitem{usgsLandsat}
+Landsat Data Access, U.S. Geological Survey. \url{https://www.usgs.gov/landsat-missions/landsat-data-access}
+
+\bibitem{sciencedirectNDVI}
+Normalized Difference Vegetation Index, ScienceDirect Topics. \url{https://www.sciencedirect.com/topics/earth-and-planetary-sciences/normalized-difference-vegetation-index}
+
+\bibitem{mdpiNDVIrange}
+NDVI value range and interpretation, \textit{Remote Sensing}, MDPI. \url{https://www.mdpi.com/2072-4292/17/24/4023}
+
+\bibitem{googleBooksVI}
+Vegetation indices in remote sensing, Google Books. \url{https://books.google.com/books?hl=en&lr=&id=FXywAAAAQBAJ}
+
+\bibitem{mdpiOverestimate}
+Overestimation of forest recovery using NDVI, \textit{Forests}, MDPI. \url{https://www.mdpi.com/1999-4907/13/6/883}
+
+\bibitem{sciencedirectNBR}
+Normalized Burn Ratio and Differenced Normalized Burn Ratio applications, ScienceDirect. \url{https://www.sciencedirect.com/science/article/abs/pii/S0273117725007793}
+
+\bibitem{frontiersinFire}
+Prescribed burn escapes and wildfire ignition conditions, \textit{Frontiers in Water}. \url{https://www.frontiersin.org/journals/water/articles/10.3389/frwa.2025.1636421/full}
+
+\bibitem{nmfwriMonitoring}
+2022 Hermits Peak/Calf Canyon Fire Monitoring, New Mexico Forest and Watershed Restoration Institute. \url{https://nmfwri.org/monitoring/2022-hermits-peak-calf-canyon/}
+
+\bibitem{baerImagery}
+BAER Imagery Support Data Download, U.S. Geological Survey. \url{https://burnseverity.cr.usgs.gov/baer/baer-imagery-support-data-download/2022/hermits-peak}
+
+\bibitem{usgsEarthExplorer}
+USGS EarthExplorer, Landsat 8/9 Collection 2 Level-2 Data. \url{https://doi.org/10.5066/P9OGBGM6}
+
+\end{thebibliography}
 
 \end{document}
