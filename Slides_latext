@@ -1,0 +1,295 @@
+\documentclass[10pt, aspectratio=169]{beamer}
+\usetheme{Madrid}
+\definecolor{myGreen}{RGB}{46,110,64}
+\definecolor{myLightGreen}{RGB}{224,240,224}
+\usecolortheme[named=myGreen]{structure}
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}
+    \insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+  \end{beamercolorbox}}%
+}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+
+% Reusable box for highlighted key numbers
+\newtcbox{\keystat}{on line, colback=myGreen!12, colframe=myGreen, boxrule=0.5pt,
+  arc=2pt, boxsep=1pt, left=4pt, right=4pt, top=2pt, bottom=2pt}
+
+\title[NDVI vs. NBR]{NDVI vs. NBR}
+\subtitle{Assessing Post-Fire Vegetation Recovery Monitoring at Hermits Peak}
+\author[F. Hou]{Francine Hou}
+\institute[ICR]{Institute for Computing in Research}
+\date{July 2026}
+
+\begin{document}
+
+% ============================================================
+\frame{\titlepage}
+
+% ============================================================% SLIDE 1: Context & Disaster Overview
+% -----------------------------------------------------------------------------
+\begin{frame}{Context: The Hermits Peak / Calf Canyon Fire}
+    \begin{block}{Background Context}
+        In April 2022, two prescribed burns merged to form the \textbf{Hermits Peak / Calf Canyon Fire}, which consumed over \textbf{341,000 acres} across northern New Mexico to become the largest wildfire in the state's recorded history.
+    \end{block}
+
+    \vspace{0.5em}
+
+    \begin{block}{Economic \& Environmental Impact}
+        Ultimately, the fire cost the displacement of thousands of residents and over 5 billion dollars in recovery efforts.
+        Note: High-severity fires can trigger long term shifts of forest ecosystems into shrubs and grasslands, which are prone to experiencing more frequent fires.
+    \end{block}
+
+    
+\end{frame}
+
+% --------------============================================================
+\begin{frame}{The Research Gap}
+
+\item \textbf {The Santa Fe Forest Reserve}  relies on \textbf{NDVI alone} for  post-fire canopy monitoring and vegetation assessments at Hermits Peak.
+
+
+\vspace{0.5em}
+
+\begin{alertblock}{The Missing Comparative Knowledge}
+\begin{itemize}
+    \item \textbf{Limited multi-index validation:} NDVI is vulnerable to soil background interference and early  grass/shrub regrowth, which can inflate its readings after a fire.
+    \item \textbf{No direct comparative study:} no empirical comparison between NDVI and NBR has been conducted specifically for the Hermits Peak--Calf Canyon burn scar.
+\end{itemize}
+\end{alertblock}
+\end{frame}
+
+% ============================================================
+
+
+\begin{frame}{NDVI vs NBR}
+\begin{itemize}
+    \item \textbf{NDVI (Normalized Difference Vegetation Index)} NDVI is defined as a graphical indicator that is used to assess vegetation health and density via near-infrared (NIR) reflectance and red light absorption values. Healthy vegetation absorbs red light for photosynthesis due to chlorophyll pigments, while reflecting NIR radiation. 
+    \item \textbf{NBR (Normalized Burn Ratio)} is an index primarily constructed to highlight burnt areas from active or recent wildfires, though it also has applications in monitoring long-term post-fire vegetation regrowth. It compares NIR and shortwave infrared (SWIR) reflectance, making it more sensitive to \alert{moisture content and char}. Healthy vegetation shows a  high reflectance in the NIR, and low reflectance in the SWIR.
+
+    
+\end{itemize}
+\end{frame}
+\begin{frame}{Research Hypotheses}
+\begin{block}{Main Hypothesis ($H_1$)}
+{NDVI alone will overstate post-fire recovery} in the Hermits Peak burn scar as NDVI values are consistently higher than NBR. 
+\end{block}
+
+\vspace{0.8em}
+
+\begin{exampleblock}{Null / Alternative Hypothesis ($H_0$)}
+{NDVI provides sufficient accuracy} for long-term post-fire monitoring on its own, rendering an additional index like NBR statistically redundant for Forest Service management purposes.
+\end{exampleblock}
+\end{frame}
+
+% ============================================================
+% ============================================================
+\begin{frame}{Data Sources}
+\begin{itemize}
+    \item Imagery source: \textbf{Landsat 8/9 Collection 2, Level-2} surface reflectance (USGS EarthExplorer)
+    \item Location: \keystat{Path 33, Row 35} -- covering the Hermits Peak burn scar
+    \item Time series: one \textbf{May} scene per year, \keystat{2021 -- 2026}, giving a pre-fire baseline plus five recovery years
+    \item Quality filter: cloud cover \keystat{$<$15\%} for every scene used
+    \item Spatial extent: all rasters clipped to the official burn perimeter from the \textbf{BAER} Imagery Support Program before analysis
+\end{itemize}
+\end{frame}
+
+\begin{frame}{NDVI NBR Calculation}
+Red, near-infrared, and shortwave infrared bands were extracted from each scene and combined using the following formulas:
+
+\begin{center}
+\begin{tcolorbox}[colback=myLightGreen, colframe=myGreen, arc=3pt, boxrule=0.8pt, width=0.85\textwidth]
+\centering
+\vspace{2pt}
+$\displaystyle \text{NDVI} = \frac{\text{NIR} - \text{Red}}{\text{NIR} + \text{Red}}$
+\vspace{6pt}
+\end{tcolorbox}
+
+\vspace{6pt}
+
+\begin{tcolorbox}[colback=myLightGreen, colframe=myGreen, arc=3pt, boxrule=0.8pt, width=0.85\textwidth]
+\centering
+\vspace{2pt}
+$\displaystyle \text{NBR} = \frac{\text{NIR} - \text{SWIR2}}{\text{NIR} + \text{SWIR2}}$
+\vspace{6pt}
+\end{tcolorbox}
+\end{center}
+
+\begin{itemize}
+    \item Calculated in \textbf{Python} (\texttt{rasterio}, \texttt{numpy}) from downloaded Landsat bands
+    \item Symbolized and spatially processed in \textbf{QGIS}
+    \item 500 random points sampled within the burn boundary; NDVI/NBR values extracted at each point, for every year
+\end{itemize}
+\end{frame}
+
+% ============================================================
+\begin{frame}{NDVI, 2021--2026}
+\centering
+\includegraphics[width=0.3\textwidth]{ndvi_2021.png}
+\includegraphics[width=0.3\textwidth]{ndvi_2022.png}
+\includegraphics[width=0.3\textwidth]{ndvi_2023.png}\\[4pt]
+\includegraphics[width=0.3\textwidth]{ndvi_2024.png}
+\includegraphics[width=0.3\textwidth]{ndvi_2025.png}
+\includegraphics[width=0.3\textwidth]{ndvi_2026.png}
+
+\vspace{6pt}
+\footnotesize 2021 (pre-fire) through 2026, left to right, top to bottom.
+\end{frame}
+
+\begin{frame}{NBR, 2021--2026}
+\centering
+\includegraphics[width=0.3\textwidth]{nbr_2021.png}
+\includegraphics[width=0.3\textwidth]{nbr_2022.png}
+\includegraphics[width=0.3\textwidth]{nbr_2023.png}\\[4pt]
+\includegraphics[width=0.3\textwidth]{nbr_2024.png}
+\includegraphics[width=0.3\textwidth]{nbr_2025.png}
+\includegraphics[width=0.3\textwidth]{nbr_2026.png}
+\end{frame}
+
+\begin{frame}{Difference (NDVI-NBR) Maps}
+\centering
+\includegraphics[width=0.3\textwidth]{diff_2022.png}
+\includegraphics[width=0.3\textwidth]{diff_2023.png}
+\includegraphics[width=0.3\textwidth]{diff_2024.png}\\[4pt]
+\includegraphics[width=0.3\textwidth]{diff_2025.png}
+\includegraphics[width=0.3\textwidth]{diff_2026.png}
+
+\vspace{6pt}
+\begin{itemize}
+    \item \textcolor{myGreen}{\textbf{Green}} $=$ NDVI $>$ NBR \qquad \textcolor{magenta}{\textbf{Pink}} $=$ NDVI $<$ NBR
+    \item The divergence is \alert{largest immediately after the fire} and visibly fades by 2026.
+    \item Raw subtraction reflects the indices' different natural scales as well as real divergence -- interpret magnitude with care.
+\end{itemize}
+\end{frame}
+
+% ============================================================
+
+\begin{frame}{Comparison and Analysis}
+\centering
+\includegraphics[width=\textwidth]{333.png}
+
+\end{frame}
+
+\begin{frame}{Comparison and Analysis: dNDVI and dNBR}
+Change relative to a pre-fire baseline (2021).
+
+\vspace{10pt}
+\begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+        \begin{tcolorbox}[colback=myLightGreen, colframe=myGreen, arc=3pt,
+            boxrule=0.8pt, left=6pt, right=6pt, top=4pt, bottom=4pt]
+        \centering
+        \textbf{dNDVI}\\[4pt]
+        $\text{dNDVI} = \text{NDVI}_{\text{year}} - \text{NDVI}_{2021}$
+        \end{tcolorbox}
+    \end{column}
+
+    \begin{column}{0.48\textwidth}
+        \begin{tcolorbox}[colback=myLightGreen, colframe=myGreen, arc=3pt,
+            boxrule=0.8pt, left=6pt, right=6pt, top=4pt, bottom=4pt]
+        \centering
+        \textbf{dNBR}\\[4pt]
+        $\text{dNBR} = \text{NBR}_{\text{year}} - \text{NBR}_{2021}$
+        \end{tcolorbox}
+    \end{column}
+\end{columns}
+
+\vspace{12pt}
+\begin{itemize}
+    \item Calculated \textbf{per sample point}, for every post-fire year (2022--2026)
+    \item A value near \textbf{0} means that point has returned to its pre-fire condition
+    \item Differencing removes that baseline noise and highlights {fire-driven change}, which a single NBR/NDVI image cannot do effectively on its own.
+\end{itemize}
+
+\end{frame}
+
+
+
+% ============================================================
+\begin{frame}{Comparison and Analysis}
+\centering
+\includegraphics[width=\textwidth]{333.png}
+
+\end{frame}
+
+\begin{frame}{Comparison and Analysis}
+\centering
+\includegraphics[width=0.8\textwidth]{444.png}
+
+\end{frame}
+
+\begin{frame}{Comparison and Analysis}
+\begin{itemize}
+    \item Lowest NDVI--NBR correlation of the entire study period corresponds to the \textbf{first full growing season} after containment
+    \item Exactly when fast-colonizing grasses and shrubs are expected to green up, well ahead of any real canopy return
+\end{itemize}
+
+\centering
+\includegraphics[width=0.85\textwidth]{222.png}
+
+\footnotesize Notice the wider spread around the trend line in the 2023 panel compared to other years.
+\end{frame}
+
+% ============================================================
+\begin{frame}{Comparison and Analysis}
+\begin{itemize}
+    \item Each of the 500 sample points was compared to its own {2021 baseline} value
+    \item Classified as {fully recovered} (80-100), {partially recovered} (50-80), or {not recovered} (0-50) 
+\end{itemize}
+
+\centering
+\includegraphics[width=0.78\textwidth]{111.png}
+\end{frame}
+
+\begin{frame}{Comparison and Analysis}
+\begin{itemize}
+    \item \textbf{By NDVI:} \keystat{62\% fully recovered} \quad \keystat{$<$2\% not recovered}
+    \item \textbf{By NBR:} \keystat{31\% fully recovered} \quad \keystat{52\% not recovered}
+    \item By NDVI's measure, the landscape has largely healed. By NBR's measure, most of it has not.
+\end{itemize}
+\end{frame}
+
+% ============================================================
+\begin{frame}{Implications}
+\begin{itemize}
+    \item NDVI and NBR are highly correalated, but differences in recovery status make them not interchangeable. 
+    \item The gap between them is largest exactly when it matters most: the first years after containment, when management decisions about restoration are often made.
+    \item A monitoring approach built on NDVI alone risks declaring a landscape recovered well before the forest structure has actually returned.
+    \item Pairing NDVI with a burn-sensitive index like NBR would give the forest reserve a more complete picture of recovery.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Limitations and Future Research}
+\begin{itemize}
+    \item Only \textbf{six} annual time points -- one scene per year
+    \item No field validation of recovery classifications
+    \item 500 random points, \textbf{not} stratified by burn severity zone
+    \item No canopy height or structural data (e.g., LiDAR)
+    \item Single month (May) per year -- seasonal effects not fully explored
+\end{itemize}
+
+\vspace{6pt}
+\textbf{Next steps:} field validation, GEDI LiDAR, canopy cover metrics.
+\end{frame}
+
+% ============================================================
+\begin{frame}{Conclusion}
+\begin{itemize}
+    \item NDVI and NBR agree on the \textbf{direction} of recovery and demonstrate relatviely high correlation.
+    \item NDVI consistently reads more optimistically than NBR.
+    \item That gap is largest in the two years immediately following containment.
+    \item For future monitoring of the Hermits Peak/Calf Canyon burn scar and possibly other fires, it is recommended to include additional indices and metrics.  
+\end{itemize}
+
+\vspace{16pt}
+\centering
+\Large Thank you.
+\end{frame}
+
+\end{document}
